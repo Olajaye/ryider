@@ -3,7 +3,7 @@ import { useTheme } from "../context/ToogleContext";
 import { IoPartlySunny } from "react-icons/io5";
 import { MdArrowOutward } from "react-icons/md";
 import { TfiMenu } from "react-icons/tfi";
-import RyiderLogo from "./RyiderLogo";
+import RyiderLogo from "../core/RyiderLogo"
 const navigation = [
   {link:"/earn", nav: 'Earn'},
   {link:"/", nav: 'Shop'},
@@ -40,7 +40,7 @@ const Navbar = () => {
 
           <a href="/" className="me-16 ms-10 dark:text-white text-sm text-center font-medium">Blog</a>
 
-          <button className="lg:flex hidden items-center bg-[#128C7E] p-3 text-sm text-center font-medium text-white rounded-lg">Get Started <MdArrowOutward className="ms-3 w-6 h-6"/></button>
+          <a href="/register" className="lg:flex hidden items-center bg-[#128C7E] p-3 text-sm text-center font-medium text-white rounded-lg">Get Started <MdArrowOutward className="ms-3 w-6 h-6"/></a>
 
         </div>
 

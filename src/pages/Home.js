@@ -1,8 +1,8 @@
 import React from 'react'
 import Hero from '../core/Hero'
 import { items } from '../constant/listDB'
-import Cards from '../components/Cards'
-import CardHeader from '../components/CardHeader';
+import Cards from '../core/Cards'
+import CardHeader from '../core/CardHeader';
 import { MdOutlineArrowBack, MdOutlineArrowForward } from 'react-icons/md';
 import FaqComponent from '../core/FAQ';
 

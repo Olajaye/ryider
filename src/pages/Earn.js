@@ -1,7 +1,7 @@
 import React from 'react'
-import Cards from '../components/Cards'
+import Cards from '../core/Cards'
 import { items } from '../constant/listDB'
-import CardHeader from '../components/CardHeader'
+import CardHeader from '../core/CardHeader'
 
 const Earn = () => {
   return (

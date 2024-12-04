@@ -1,5 +1,4 @@
-import React from 'react'
-import RyiderLogo from './RyiderLogo'
+import RyiderLogo from "../core/RyiderLogo"
 import { CgFacebook } from 'react-icons/cg'
 import { BsTwitterX } from 'react-icons/bs'
 import { FiInstagram } from 'react-icons/fi'

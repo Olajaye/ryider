@@ -1,7 +1,9 @@
 import { Routes, Route } from "react-router";
-import Layout from "./Layout";
+import Layout from "./core/Layout";
 import Home from "./pages/Home";
 import Earn from "./pages/Earn";
+import Register from "./pages/Register";
+import LogIn from "./pages/LogIn";
 
 function App() {
   return (
@@ -9,8 +11,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout/>}>
           <Route index element={<Home/>}/>
-          <Route path="/earn" element={<Earn/>}/>
+          <Route path="earn" element={<Earn/>}/>
         </Route>
+        <Route path="register" element={<Register/>}/>
+        <Route path="login" element={<LogIn/>}/>
       </Routes>
     </main>
   )

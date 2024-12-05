@@ -26,6 +26,7 @@ export const PasswordInput = ({
             : 'border-gray-300 focus:ring-blue-200'
         }`}
         placeholder={placeholder}
+        required
       />
       <button
         type="button"

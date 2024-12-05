@@ -1,14 +1,18 @@
 import React from 'react'
 
-const Input = ({label, type, id, placeholder}) => {
+const Input = ({label, type, id, placeholder, name, value, onChangeHandler}) => {
   return (
     <div className='flex flex-col '>
       <label htmlFor={id} className='font-poppins font-semibold text-base text-[#111111]'>{label}</label>
       <input 
         type={type}
         id={id}
+        name={name}
+        value={value}
+        onChange={onChangeHandler}
+        required
         placeholder={placeholder}
-        className='w-full md:w-[80%] mt-2 p-2 outline-none border-[1px] border-gray-500 rounded-md'
+        className='w-full  mt-2 p-2  border-[1px]  outline-green border-green rounded-md'
       />
     </div>
   )

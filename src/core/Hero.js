@@ -11,9 +11,7 @@ const Hero = () => {
           <h6 className='max-w-[55%] mt-5 text-white'>Turn your online activities into real earnings. Complete tasks, get paid, and make the most of your time!"</h6>
           <div className="flex space-x-7 items-center mt-5">
             <p className="text-white">Learn More</p>
-            <button className="flex items-center bg-[#128C7E] p-3 text-sm text-center font-medium text-white rounded-lg">
-              Get Started <MdArrowOutward className="ms-3 w-6 h-6"/>
-            </button>
+            <a href="/register" className="lg:flex hidden items-center bg-[#128C7E] p-3 text-sm text-center font-medium text-white rounded-lg">Get Started <MdArrowOutward className="ms-3 w-6 h-6"/></a>
           </div>
         </div>
       </div> 

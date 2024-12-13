@@ -40,7 +40,7 @@ const Navbar = () => {
 
           <a href="/" className="me-16 ms-10 dark:text-white text-sm text-center font-medium">Blog</a>
 
-          <a href="/register" className="lg:flex hidden items-center bg-[#128C7E] p-3 text-sm text-center font-medium text-white rounded-lg">Get Started <MdArrowOutward className="ms-3 w-6 h-6"/></a>
+          <a href="/dashboard" className="lg:flex hidden items-center bg-[#128C7E] p-3 text-sm text-center font-medium text-white rounded-lg">Get Started <MdArrowOutward className="ms-3 w-6 h-6"/></a>
 
         </div>
 

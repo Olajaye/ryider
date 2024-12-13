@@ -1,20 +1,58 @@
 import React, { useState } from 'react'
 import Input from '../core/Input'
 import { PasswordInput } from '../core/PasswordInput'
+import { useAuth } from '../context/AuthContext'
+import { useLocation, useNavigate } from 'react-router'
+import axios from 'axios'
+import { Loading } from '../core/LoadingSpiner'
+import { ErrorAlert } from '../core/alert'
 
 
 const LogIn = () => {
   const [password, setPassword]=useState('')
-  const [emailOrPhone, setEmailOrPhone] = useState('')
+  const [email, setEmail] = useState('')
+  const {backendUrl, setAuth} = useAuth()
+  const [loading, setLoading]= useState(false)
+  const navigate = useNavigate()
+  const location = useLocation()
+  const from = location.state?.from?.pathname || "/" 
 
-  const handleSubmit= (e)=>{
+  const reset = ()=> {
+    setEmail("")
+    setPassword("")
+  }
+
+  const handleSubmit= async (e)=>{
     e.preventDefault();
-    console.log(password)
-    console.log(emailOrPhone)
+
+    const url = `${backendUrl}/api/auth/login`
+    setLoading(true)
+    
+    try {
+      reset()
+      axios.defaults.withCredentials = true
+      const {data} = await axios.post(url, {email, password})
+      console.log(data)
+      if(data.success){
+        setLoading(false)
+        const {token} = data
+        setAuth({token})
+        // navigate('/dashboard') 
+        navigate(from, {replace: true})
+      }else {
+        setLoading(false);
+        ErrorAlert(data.message)
+      }
+      
+    } catch (error) {
+      setLoading(false)
+      ErrorAlert(error.message)
+    }
   }
 
   return (
     <section className='container mx-auto px-4'>
+     {loading && <Loading/>}
       <div className='h-screen flex justify-center items-center'>
         <div className='w-full md:w-[60%]'>
           <div className='flex justify-center items-center'>
@@ -25,11 +63,11 @@ const LogIn = () => {
           <div className='pt-16'>
             <form onSubmit={handleSubmit}>
               <Input 
-                label={"Full Name or Business name"}
-                id={"emailOrPhone"}
-                name={"emailOrPhone"}
-                value={emailOrPhone}
-                onChangeHandler={(e)=>setEmailOrPhone(e.target.value)}
+                label={"Email"}
+                id={"email"}
+                name={"email"}
+                value={email}
+                onChangeHandler={(e)=>setEmail(e.target.value)}
                 placeholder={"tomaxk.dami.1999@gmail.com"}
                 type={'text'}
               />
@@ -45,7 +83,7 @@ const LogIn = () => {
                 />
               </div>
 
-              <h5 className='font-poppins font-medium text-sm text-center pt-7'>Forget your password? <a href="forgetpassword" className='text-green'>Click here</a></h5>
+              <h5 className='font-poppins font-medium text-sm text-center pt-7'>Forget your password? <a href="/forgetpassword" className='text-green'>Click here</a></h5>
 
 
 
@@ -57,7 +95,7 @@ const LogIn = () => {
               </button>
 
 
-              <h5 className='font-poppins font-medium text-sm text-center pt-7'>Dont't have an account? <span className='text-green'>Sign up</span></h5>
+              <h5 className='font-poppins font-medium text-sm text-center pt-7'>Dont't have an account? <a href='/register' className='text-green'>Sign up</a></h5>
             </form>
           </div>
         </div>

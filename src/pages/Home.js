@@ -45,7 +45,7 @@ const Home = () => {
         </div>
 
         <h2 className='text-[#E09204] text-center font-bold text-3xl  py-7'>How Ryider Works</h2>
-        {/* <div className='flex justify-between relative pt-7'>
+        <div className='flex justify-between relative pt-7'>
           <div className='h-[450px] flex justify-end items-end'>
             <div className='bg-stepOneBg bg-no-repeat bg-contain h-[300px] w-[300px] p-4 flex justify-start items-center flex-col'>
               <h5 className='mt-5 text-[#DCFBF7] font-bold text-4xl'>Sign up</h5>
@@ -70,7 +70,7 @@ const Home = () => {
               <h6 className='mt-3 text-[#DCFBF7] font-bold text-lg text-center'>Cash rewards for every task completed</h6>
             </div>
           </div>
-        </div> */}
+        </div> 
       </div>
 
 

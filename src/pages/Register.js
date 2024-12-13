@@ -4,6 +4,11 @@ import { IoIosArrowBack } from 'react-icons/io'
 import Input from '../core/Input'
 import { RegisterPasswordForm } from '../components/PasswordForm'
 import { validatePassword } from '../util/passwordvalidation';
+import { useAuth } from '../context/AuthContext'
+import axios from 'axios'
+import { useNavigate } from 'react-router'
+import { ErrorAlert } from '../core/alert'
+import { Loading } from '../core/LoadingSpiner'
 
 const images = [
   '/register/registerImage.svg',
@@ -15,7 +20,6 @@ const formData = {
  fullname: "",
  country: "",
  email:"",
- code:"",
  phone:"",
  referral:""
 }
@@ -29,15 +33,25 @@ const Register = () => {
   const [confirmPassword, setConfirmPassword] = useState('');
   const validation = validatePassword(password);
   const passwordsMatch = password === confirmPassword;
-  const [errors, setErrors] = useState({
-    fullname: "",
-    country: "",
-    email:"",
-    code:"",
-    phone:"",
-    referral:""
-  });
+  const [errors, setErrors] = useState({fullname: "", country: "", email:"", phone:"", referral:""});
+  const [loading, setLoading]= useState(false)
 
+  const { backendUrl, setAuth} = useAuth()
+  const navigate = useNavigate()
+
+  const reset = ()=>{
+    setFormFeild({
+      fullname: "",
+      country: "",
+      email:"",
+      code:"",
+      phone:"",
+      referral:""
+    })
+    setPassword("")
+    setConfirmPassword('')
+    setSelectedRole(null)
+  }
 
   const handleShopperChange = () => {
     setSelectedRole(prev => (prev === 'shopper' ? null : 'shopper'));
@@ -47,7 +61,7 @@ const Register = () => {
     setSelectedRole(prev => (prev === 'publisher' ? null : 'publisher'));
   };
 
-  const handleFormDaatOnChange = (e)=>{
+  const handleFormDataOnChange = (e)=>{
     const {name, value} = e.target
     setFormFeild((prev)=> ({...prev, [name]:value}))
   }
@@ -68,7 +82,6 @@ const Register = () => {
     return Object.keys(newErrors).length === 0;
   };
 
-
   const handleNext = () => {
     if (validateStep()) {
       setStep(step + 1);
@@ -77,21 +90,50 @@ const Register = () => {
 
 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    const {fullname, email, country, phone, referral  } = formFeild
+
+
     if (validation.isValid && passwordsMatch) {
-      console.log('Password is valid and matches!');
-    }
-    setFormFeild({
-      fullname: "",
-      country: "",
-      email:"",
-      code:"",
-      phone:"",
-      referral:""
-     })
-     setPassword("")
-     setConfirmPassword('')
+      reset()
+      setLoading(true)
+      try {
+        axios.defaults.withCredentials = true
+        const url = `${backendUrl}/api/auth/register`
+        const {data} = await axios.post(url, {
+        name: fullname,
+        email: email,
+        role: selectedRole,
+        password: password,
+        country: country,
+        phone: phone,
+        referral: referral
+        })
+  
+        if(data.success){
+          const {token}= data 
+          setAuth({token})
+          const url = `${backendUrl}/api/auth/send-verify-otp`
+          const res = await axios.post(url)
+          setLoading(false)
+          if(res.data.success){
+            navigate('/verification')
+          }else{
+            ErrorAlert(res.data.message)
+          }
+        
+        }else{
+          setLoading(false)
+          ErrorAlert(data.message)
+        }
+        
+      } catch (error) {
+        setLoading(false)
+        ErrorAlert(error.message)
+      }
+    } 
   };
 
   const renderStepContent = () => {
@@ -102,7 +144,6 @@ const Register = () => {
             <div className='container mx-auto px-4'>
               <div className='flex justify-center items-center h-screen'>
                 <div className='flex justify-center items-center flex-col'>
-                  {/* <img src='/register/registerImage.svg' alt='register'/> */}
                   <Carousel images={images}/>
 
                   <h1 className='mt-5 font-poppins font-bold text-2xl md:text-4xl text-center'>Earn <span className='text-green'>Money</span> from Everyday Tasks with <span className='text-green'>Ryider</span></h1>
@@ -122,15 +163,15 @@ const Register = () => {
           <section className='relative'>
             <div className='container mx-auto px-4'>
               <div className='flex justify-center items-center h-screen flex-col'>
-                <img src='/onboardingImage.png' alt='register'/>
-                <h5 className='mt-3 font-poppins font-bold text-2xl text-center'>
+                <img src='/onboardingImage.png' alt='register' className='md:h-[400px]'/>
+                <h5 className='mt-3 font-poppins font-bold  text-xl md:text-2xl text-center'>
                   Are you a Shopper or Publisher
                 </h5>
-                <p className='font-poppins font-normal text-sm md:text-xl text-center mt-2'>
+                <p className='font-poppins font-normal text-sm md:text-xl text-center mt-1'>
                   please select one option
                 </p>
 
-                <div className='flex space-x-20 mt-3'>
+                <div className='flex space-x-9 md:space-x-20 mt-4'>
                   <div className='flex space-x-2 items-center'>
                     <input 
                       id="shopper" 
@@ -140,11 +181,13 @@ const Register = () => {
                       onChange={handleShopperChange}
                       required
                     />
-                    <label htmlFor="shopper"  className="w-6 h-6 rounded-full border-[1px] border-gray-400  bg-white  cursor-pointer transition-colors duration-300 flex items-center justify-center">
+                    <label htmlFor="shopper"  className="w-6 h-6 rounded-full border-[1px] border-gray-400  bg-white cursor-pointer transition-colors duration-300 flex items-center justify-center">
                       <div className={`w-5 h-5 rounded-full ${selectedRole === 'shopper' ? 'bg-green' : 'bg-gray-400'}`} />
                     </label>
-                    <label htmlFor='shopper'> I am a Shopper</label>
+                    <label htmlFor='shopper' className='cursor-pointer'> I am a Shopper</label>
                   </div>
+
+                  
                   <div className='flex space-x-2 items-center'>
                     <input 
                       id="publisher" 
@@ -154,10 +197,10 @@ const Register = () => {
                       required
                       onChange={handlePublisherChange}
                       />
-                    <label htmlFor="publisher"  className="w-6 h-6 rounded-full border-[1px] border-gray-400  bg-white  cursor-pointer transition-colors duration-300 flex items-center justify-center">
+                    <label htmlFor="publisher"  className="w-6 h-6 rounded-full border-[1px] border-gray-400  bg-white cursor-pointer transition-colors duration-300 flex items-center justify-center">
                       <div className={`w-5 h-5 rounded-full ${selectedRole === 'publisher' ? 'bg-green' : 'bg-gray-400'}`} />
                     </label>
-                    <label htmlFor='publisher'> I am a Publisher</label>
+                    <label htmlFor='publisher' className='cursor-pointer'> I am a Publisher</label>
                   </div>
                 </div>
 
@@ -166,20 +209,16 @@ const Register = () => {
                   type='button' 
                   disabled={selectedRole === null} 
                   className={`${selectedRole === null ? "bg-[#128c7e83]":"bg-green"} text-white  w-[100%] md:w-[70%] py-2 rounded-lg mt-5 text-lg font-poppins font-bold`}>
-                  Countinue
+                  Continue
                 </button>
 
                 <h4 className='mt-4 font-poppins font-semibold text-lg'>
                   Already have an account <a href='/login' className='text-green '>Sign in</a>
                 </h4>
 
-                <h5 className='text-[#11183C] font-poppins text-sm text-center mt-3'>
+                <h5 className='text-[#11183C] font-poppins text-sm text-center mt-5'>
                   By registering you accept our Terms & Conditions and Privacy Policy. Your data will be security encrypted
                 </h5>
-              
-
-              
-
               </div>
             </div>
           </section>
@@ -201,7 +240,7 @@ const Register = () => {
                       id={"legalname"}
                       name={"fullname"}
                       value={formFeild.fullname}
-                      onChangeHandler={handleFormDaatOnChange}
+                      onChangeHandler={handleFormDataOnChange}
                       placeholder={"Legal full name"}
                       type={'text'}
                     />
@@ -217,7 +256,7 @@ const Register = () => {
                       name='country'
                       value={formFeild.country}
                       required
-                      onChange={handleFormDaatOnChange}
+                      onChange={handleFormDataOnChange}
                       >
                       <option value="">--Choose an option--</option>
                       <option value="nigeria">Nigeria</option>
@@ -235,7 +274,7 @@ const Register = () => {
                     id={"email"}
                     name={"email"}
                     value={formFeild.email}
-                    onChangeHandler={handleFormDaatOnChange}
+                    onChangeHandler={handleFormDataOnChange}
                     placeholder={"Enter your email address"}
                     type={'email'}
                   />
@@ -245,32 +284,25 @@ const Register = () => {
                     id={"phone"}
                     name={"phone"}
                     value={formFeild.phone}
-                    onChangeHandler={handleFormDaatOnChange}
+                    onChangeHandler={handleFormDataOnChange}
                     placeholder={"Enter your phone number"}
                     type={'number'}
                   />
                 </div>
 
 
-                <div className='grid grid-cols-1 md:grid-cols-2 gap-y-5 md:gap-x-20 pt-5 md:pt-16'>
-                  <Input 
-                    label={"Verification code"}
-                    id={"code"}
-                    name={"code"}
-                    value={formFeild.code}
-                    onChangeHandler={handleFormDaatOnChange}
-                    placeholder={"Enter code sent to email"}
-                    type={'text'}
-                  />
-                  <Input 
-                    label={"Referral Username"}
-                    id={"referral"}
-                    name={"referral"}
-                    value={formFeild.referral}
-                    onChangeHandler={handleFormDaatOnChange}
-                    placeholder={"motionbyables"}
-                    type={'text'}
-                  />
+                <div className='grid grid-cols-1 pt-5 md:pt-16'>
+                  <div className='w-full md:w-[45%]'>
+                    <Input 
+                      label={"Referral Username"}
+                      id={"referral"}
+                      name={"referral"}
+                      value={formFeild.referral}
+                      onChangeHandler={handleFormDataOnChange}
+                      placeholder={"motionbyables"}
+                      type={'text'}
+                    />
+                  </div>
                 </div>
 
                 <div className='flex justify-center items-center pt-10'>
@@ -296,7 +328,7 @@ const Register = () => {
 
   return (
     <>
-      
+      {loading && <Loading/>}
       <form onSubmit={handleSubmit}>
        {renderStepContent()}
       </form>

@@ -2,23 +2,34 @@ import React, { useState } from 'react'
 import Input from '../core/Input'
 import { IoIosArrowBack } from 'react-icons/io'
 import { useNavigate } from 'react-router'
+import { useAuth } from '../context/AuthContext'
+import axios from 'axios'
 
 
 
 const ForgetPassword = () => {
-  const [formData,  setFormData] = useState({ email:"", code:""})
-
+  const [email,  setEmail] = useState('')
   const navigate = useNavigate()
+  const {backendUrl} = useAuth()
 
-  const handleOnChange = (e)=>{
-    const {name, value} = e.target
-    setFormData((prev)=> ({...prev, [name]: value}))
-  }
-
-  const handleSubmit = (e)=>{
+  const handleSubmit = async(e)=>{
     e.preventDefault();
-    console.log(formData)
-    navigate('/createpassword')
+    console.log(email)
+
+    const url = `${backendUrl}/api/auth/send-reset-otp`
+    try {
+      const {data} = await axios.post(url, {email});
+      console.log(data)
+      if (data.success) {
+        localStorage.setItem('resetEmail', JSON.stringify(email));
+        console.log(data)
+        navigate('/createpassword')
+      } 
+    } catch (error) {
+      console.log(error)
+    }
+
+    
   }
   
 
@@ -41,14 +52,13 @@ const ForgetPassword = () => {
               <Input 
                 label={"Enter Email"}
                 id={"email"}
-                name={"email"}
-                value={formData.email}
-                onChangeHandler={handleOnChange}
+                value={email}
+                onChangeHandler={(e)=>setEmail(e.target.value)}
                 placeholder={"tomaxk.dami.1999@gmail.com"}
                 type={'text'}
               />
 
-              <div className='pt-10'>
+              {/* <div className='pt-10'>
               <Input 
                 label={"Verification code"}
                 id={"code"}
@@ -58,11 +68,11 @@ const ForgetPassword = () => {
                 placeholder={"enter code sent to email"}
                 type={'text'}
               />
-              </div>
+              </div> */}
 
              
 
-              <h5 className='font-poppins font-medium text-sm text-center pt-7'>Didn't get an email? <span className='text-green'>Send again</span></h5>
+              {/* <h5 className='font-poppins font-medium text-sm text-center pt-7'>Didn't get an email? <span className='text-green'>Send again</span></h5> */}
 
 
 

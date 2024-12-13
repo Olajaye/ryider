@@ -7,6 +7,12 @@ import LogIn from "./pages/LogIn";
 import ForgetPassword from "./pages/ForgetPassword";
 import CreateNewPassword from "./pages/CreateNewPassword";
 
+import Dashboard from "./pages/Dashboard";
+import RegisterVerification from "./pages/RegisterVerification";
+import RequiredAuth from "./components/RequireAuth";
+
+
+
 function App() {
   return (
     <main className="dark:bg-[#121212]">
@@ -16,9 +22,14 @@ function App() {
           <Route path="earn" element={<Earn/>}/>
         </Route>
         <Route path="register" element={<Register/>}/>
-        <Route path="login" element={<LogIn/>}/>
+        <Route path="verification" element={<RegisterVerification/>}/>
+        <Route path="login" element={<LogIn/>}/> 
         <Route path="forgetpassword" element={<ForgetPassword/>}/>
         <Route path="createpassword" element={<CreateNewPassword/>}/>
+       
+        <Route element={<RequiredAuth/>}>
+          <Route path="dashboard" element={<Dashboard/>}/>
+        </Route>
       </Routes>
     </main>
   )

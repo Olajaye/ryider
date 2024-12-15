@@ -28,7 +28,7 @@ const Navbar = () => {
           ))}
         </div>
 
-        <div className="flex items-center">
+        <div className="md:flex items-center hidden space-x-4">
           {isDarkMode ? 
             <div onClick={toggleTheme}>
               <IoSunnyOutline className="text-[#128C7E] h-6 w-6"/>
@@ -38,14 +38,14 @@ const Navbar = () => {
             </div>
           }
 
-          <a href="/" className="me-16 ms-10 dark:text-white text-sm text-center font-medium">Blog</a>
+          <a href="/" className="dark:text-white text-sm text-center font-medium">Blog</a>
 
-          <a href="/dashboard" className="lg:flex hidden items-center bg-[#128C7E] p-3 text-sm text-center font-medium text-white rounded-lg">Get Started <MdArrowOutward className="ms-3 w-6 h-6"/></a>
+          <a href="/dashboard" className="flex items-center bg-[#128C7E] p-3 text-sm text-center font-medium text-white rounded-lg">Get Started <MdArrowOutward className="ms-3 w-6 h-6"/></a>
 
         </div>
 
 
-        <div className="lg:hidden">
+        <div className="md:hidden">
           <TfiMenu className="h-7 w-7" />
         </div>
 

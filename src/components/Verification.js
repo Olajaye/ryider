@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router'
 import { ErrorAlert, SuccessAlert } from '../core/alert';
+import { Loading } from '../core/LoadingSpiner';
 
 
 
 const Verification = ({url, route}) => {
   const [code, setCode] = useState(Array(6).fill('')); // Array to store the 6 digits
   const [error, setError] = useState('');
-
+  const [loading, setLoading]= useState(false)
   const navigate = useNavigate()
 
   const handleInputChange = (e, index) => {
@@ -41,19 +42,21 @@ const Verification = ({url, route}) => {
       return;
     }
 
-   
-  
+    setLoading(true)
     try {
       axios.defaults.withCredentials = true
       const {data} = await axios.post(url, { otp: enteredCode });
       if (data.success) {
+        setLoading(false)
         SuccessAlert(data.message)
         navigate(route)
       } else {
         ErrorAlert(data.message)
+        setLoading(false)
         setError('Invalid verification code. Please try again.');
       }
     } catch (error) {
+      setLoading(false)
       ErrorAlert(error.message)
       setError('An error occurred while verifying the code.');
     }
@@ -61,35 +64,50 @@ const Verification = ({url, route}) => {
 
 
   return (
-  
-      <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-sm shadow-green">
-        <h2 className="text-xl font-semibold text-center mb-6">Email Verification</h2>
-        <form onSubmit={handleSubmit}>
-          <div className="grid grid-cols-6 gap-4 mb-4">
-            {code.map((digit, index) => (
-              <input
-                key={index}
-                id={`otp-input-${index}`}
-                type="text"
-                value={digit}
-                maxLength="1"
-                onChange={(e) => handleInputChange(e, index)}
-                autoFocus={index === 0} // Focus first input field on load
-                className="w-12 h-12 text-center text-2xl border border-green rounded-md focus:outline-none focus:ring-2 focus:ring-green"
-              />
-            ))}
+    <section className='bg-onboardingBg bg-no-repeat bg-cover w-full'>
+      {loading && <Loading/>}
+      <div className='container mx-auto px-4'>
+        <div className='h-screen flex justify-center items-center'>
+          <div className='flex-1'>
+            <img src='/onboarding/onBoardLogo.svg' alt='logo'/>
           </div>
 
-          {error && <div className="text-red-500 text-sm mb-4">{error}</div>}
+          <div className='h-[80vh] flex-1 flex justify-center items-center '>
+            <div className=' w-[80%] h-[80vh] flex justify-center items-center rounded-md'>
+              <div className="rounded-lg bg-white shadow-md w-full max-w-sm shadow-green p-4">
+                <h2 className="text-xl font-semibold text-center mb-6">Email Verification</h2>
+                <form onSubmit={handleSubmit}>
+                  <div className="grid grid-cols-6 gap-4 mb-4">
+                    {code.map((digit, index) => (
+                      <input
+                        key={index}
+                        id={`otp-input-${index}`}
+                        type="text"
+                        value={digit}
+                        maxLength="1"
+                        onChange={(e) => handleInputChange(e, index)}
+                        autoFocus={index === 0} // Focus first input field on load
+                        className="w-12 h-12 text-center text-2xl border border-green rounded-md focus:outline-none focus:ring-2 focus:ring-green"
+                      />
+                    ))}
+                  </div>
 
-          <button
-            type="submit"
-            className="w-full py-2 px-4 bg-green text-white rounded-md hover:bg-green focus:outline-none focus:ring-2 focus:ring-blue-300"
-          >
-            Verify
-          </button>
-        </form>
+                  {error && <div className="text-red-500 text-sm mb-4">{error}</div>}
+
+                  <button
+                    type="submit"
+                    className="w-full py-2 px-4 bg-green text-white rounded-md hover:bg-green focus:outline-none focus:ring-2 focus:ring-blue-300"
+                  >
+                    Verify
+                  </button>
+                </form>
+              </div>
+
+            </div>
+          </div>
+        </div>
       </div>
+    </section>
     
   )
 }

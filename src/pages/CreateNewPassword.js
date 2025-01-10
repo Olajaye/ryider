@@ -4,6 +4,8 @@ import { PasswordInput } from '../core/PasswordInput';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
 import { useAuth } from '../context/AuthContext';
+import { ErrorAlert, SuccessAlert } from '../core/alert';
+import { Loading } from '../core/LoadingSpiner';
 
 
 const CreateNewPassword = () => {
@@ -11,6 +13,7 @@ const CreateNewPassword = () => {
   const [code, setCode] = useState(Array(6).fill('')); // Array to store the 6 digits
   const [error, setError] = useState('');
   const [password, setPassword] = useState('');
+   const [loading, setLoading]= useState(false)
   const {backendUrl} = useAuth()
   const passwordsMatch = password === confirmPassword;
   const navigate = useNavigate()
@@ -44,21 +47,23 @@ const CreateNewPassword = () => {
       return;
     }
 
+    setLoading(true)
     
     try {
-      console.log(
-        enteredCode, Email, password
-      )
       const {data} = await axios.post(url, { otp: enteredCode, email: Email, newPassword: password });
-      console.log(data)
       if (data.success) {
-        alert('password reset');
+        setLoading(false)
+        SuccessAlert(data.message)
         localStorage.removeItem('resetEmail');
         navigate('/login')
       } else {
+        ErrorAlert(data.message)
+        setLoading(false)
         setError('Invalid verification code. Please try again.');
       }
     } catch (error) {
+      ErrorAlert(error.message)
+      setLoading(false)
       setError('An error occurred while verifying the code.');
     }
     
@@ -66,75 +71,86 @@ const CreateNewPassword = () => {
 
 
   return (
-    <section className='container mx-auto px-4'>
-      <div className='h-screen flex justify-center items-center'>
-        <div className='w-full md:w-[60%]'>
-          <div className='flex justify-center items-center'>
-            <a href='login'><IoIosArrowBack className='h-7 w-7'/></a>
-            <h2 className='font-poppins text-2xl w-[95%] text-[#111111] text-center font-semibold flex items-center justify-center'>Password Reset</h2>
+    <section className='bg-onboardingBg bg-no-repeat bg-cover'>
+      {loading && <Loading/>}
+      <div className='container mx-auto px-4'>
+        <div className='h-screen flex justify-center items-center'>
+          <div className='flex-1'>
+            <img src='/onboarding/onBoardLogo.svg' alt='logo'/>
           </div>
+          <div className='h-[80vh] flex-1 flex justify-center items-center '>
+            <div className='bg-white w-[80%] h-[80vh] flex justify-center items-center rounded-md'>
+            {/* Content */}
+              <div className='p-4'>
+                <div className='flex justify-center items-center'>
+                  <a href='login'><IoIosArrowBack className='h-7 w-7'/></a>
+                  <h2 className='font-poppins text-2xl w-[95%] text-[#111111] text-center font-semibold flex items-center justify-center'>Password Reset</h2>
+                </div>
 
-          <div className='py-10 justify-center items-center flex'>
-            <form onSubmit={handleSubmit}>
+                <div className='py-10 justify-center items-center flex'>
+                  <form onSubmit={handleSubmit}>
 
-            <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-sm  mb-7">
-              <h2 className="text-xl font-semibold text-center mb-6">Email Verification</h2>
-            
-              <div className="grid grid-cols-6 gap-4 mb-4">
-                {code.map((digit, index) => (
-                  <input
-                    key={index}
-                    id={`otp-input-${index}`}
-                    type="text"
-                    value={digit}
-                    maxLength="1"
-                    onChange={(e) => handleInputChange(e, index)}
-                    autoFocus={index === 0} // Focus first input field on load
-                    className="w-12 h-12 text-center text-2xl border border-green rounded-md focus:outline-none focus:ring-2 focus:ring-green"
-                  />
-                ))}
+                  <div className="bg-white p-6 rounded-lg shadow-md w-full max-w-sm  mb-7">
+                    <h2 className="text-xl font-semibold text-center mb-6">Email Verification</h2>
+                  
+                    <div className="grid grid-cols-6 gap-4 mb-4">
+                      {code.map((digit, index) => (
+                        <input
+                          key={index}
+                          id={`otp-input-${index}`}
+                          type="text"
+                          value={digit}
+                          maxLength="1"
+                          onChange={(e) => handleInputChange(e, index)}
+                          autoFocus={index === 0} // Focus first input field on load
+                          className="w-12 h-12 text-center text-2xl border border-green rounded-md focus:outline-none focus:ring-2 focus:ring-green"
+                        />
+                      ))}
+                    </div>
+
+                    {error && <div className="text-red-500 text-sm mb-4">{error}</div>}  
+                  </div>
+
+
+
+
+
+                  <div className='space-y-3'>
+                    <label className='pb-5 font-poppins font-semibold text-base text-[#111111]'>
+                      Password
+                    </label>
+                    <PasswordInput
+                      value={password}
+                      onChange={setPassword}
+                    />
+                  </div>
+
+                  <div className='pt-7 space-y-3'>
+                    <label className=' font-poppins font-semibold text-base text-[#111111]'>
+                      Confirm password
+                    </label>
+                    <PasswordInput
+                      value={confirmPassword}
+                      onChange={setConfirmPassword}
+                    />
+                  </div>
+
+
+                  <button
+                    type='submit'
+                    disabled={!passwordsMatch}
+                    className="w-full bg-green text-white py-2 px-4 rounded-lg  disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors duration-200 mt-6"
+                    >
+                      Countinue
+                    </button>
+                  </form>
+                  
+                  
+                </div>
+
               </div>
-
-              {error && <div className="text-red-500 text-sm mb-4">{error}</div>}  
             </div>
-
-
-
-
-
-            <div className='space-y-3'>
-              <label className='pb-5 font-poppins font-semibold text-base text-[#111111]'>
-                Password
-              </label>
-              <PasswordInput
-                value={password}
-                onChange={setPassword}
-              />
-            </div>
-
-            <div className='pt-7 space-y-3'>
-              <label className=' font-poppins font-semibold text-base text-[#111111]'>
-                Confirm password
-              </label>
-              <PasswordInput
-                value={confirmPassword}
-                onChange={setConfirmPassword}
-              />
-            </div>
-
-
-            <button
-              type='submit'
-              disabled={!passwordsMatch}
-              className="w-full bg-green text-white py-2 px-4 rounded-lg  disabled:bg-gray-300 disabled:cursor-not-allowed transition-colors duration-200 mt-6"
-              >
-                Countinue
-              </button>
-            </form>
-             
-            
           </div>
-
         </div>
       </div>
     </section>

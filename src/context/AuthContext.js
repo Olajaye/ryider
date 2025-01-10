@@ -19,14 +19,6 @@ export const AuthProvider = ({children})=>{
   }) 
 
 
-
-  useEffect(()=>{
-    if(auth !== null){
-      localStorage.setItem('token', JSON.stringify(auth))
-      getUserData()
-    }
-  },[auth])
-
   const getUserData = async ()=>{
     axios.defaults.withCredentials = true
     const url = `${backendUrl}/api/user/data`
@@ -37,6 +29,16 @@ export const AuthProvider = ({children})=>{
       ErrorAlert(error.message)
     }
   }  
+
+  useEffect(()=>{
+    if(auth !== null){
+      localStorage.setItem('token', JSON.stringify(auth))
+      getUserData()
+    }
+    
+  },[auth])
+
+  
 
   const value ={
     backendUrl,

@@ -5,25 +5,25 @@ const FaqComponent = () => {
 
   const faqData = [
     {
-      question: "What is your return policy?",
-      answer: "You can return products within 30 days of purchase for a full refund."
+      question: "Is Ryider free to join?",
+      answer: "Yes signing up on Ryider is free"
     },
     {
-      question: "How do I track my order?",
+      question: "How do i get paid?",
       answer: "Once your order is shipped, you'll receive a tracking link in your email."
     },
     {
-      question: "Do you offer international shipping?",
+      question: "Are there linits on the tasks i can do?",
       answer: "Yes, we ship to many countries around the world. Please check the shipping options at checkout."
     },
-    {
-      question: "Can I modify my order after placing it?",
-      answer: "Unfortunately, once an order is placed, it cannot be modified. Please double-check before confirming."
-    },
-    {
-      question: "How can I contact customer support?",
-      answer: "You can reach our customer support team via email at support@ourstore.com or by calling 1-800-123-456."
-    }
+    // {
+    //   question: "Can I modify my order after placing it?",
+    //   answer: "Unfortunately, once an order is placed, it cannot be modified. Please double-check before confirming."
+    // },
+    // {
+    //   question: "How can I contact customer support?",
+    //   answer: "You can reach our customer support team via email at support@ourstore.com or by calling 1-800-123-456."
+    // }
   ];
 
   const toggleAnswer = (index) => {
@@ -33,9 +33,10 @@ const FaqComponent = () => {
   return (
     <div className="max-w-3xl mx-auto p-6">
       <h2 className="text-3xl font-semibold text-center mb-6">Frequently Asked Questions</h2>
+      <p className='text-xl font-semibold text-center mb-6'>Everything you need to know about the product and billing.</p>
       <div className="space-y-4">
         {faqData.map((faq, index) => (
-          <div key={index} className="bg-gray-100 rounded-lg shadow-md p-4">
+          <div key={index} className="rounded-lg shadow-md p-4">
             <div 
               className="flex justify-between items-center cursor-pointer"
               onClick={() => toggleAnswer(index)}

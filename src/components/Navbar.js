@@ -1,18 +1,18 @@
-import { IoSunnyOutline } from "react-icons/io5";
-import { useTheme } from "../context/ToogleContext";
-import { IoPartlySunny } from "react-icons/io5";
+// import { IoSunnyOutline } from "react-icons/io5";
+// import { useTheme } from "../context/ToogleContext";
+// import { IoPartlySunny } from "react-icons/io5";
 import { MdArrowOutward } from "react-icons/md";
 import { TfiMenu } from "react-icons/tfi";
 import RyiderLogo from "../core/RyiderLogo"
 const navigation = [
-  {link:"/earn", nav: 'Earn'},
-  {link:"/", nav: 'Shop'},
-  {link: "/", nav: "Discovery"},
-  {link: '/', nav: "More"},
+  {link:"/", nav: 'About Us'},
+  {link:"/", nav: 'Contact Us'},
+  {link: "/", nav: "Service"},
+  {link: '/', nav: "Blog"},
   {link: "/", nav: "Resources"},
 ]
 const Navbar = () => {
-  const { isDarkMode, toggleTheme } = useTheme();
+  // const { isDarkMode, toggleTheme } = useTheme();
 
   return (
     <header className='container mx-auto px-4 '>
@@ -28,7 +28,7 @@ const Navbar = () => {
           ))}
         </div>
 
-        <div className="md:flex items-center hidden space-x-4">
+        {/* <div className="md:flex items-center hidden space-x-4">
           {isDarkMode ? 
             <div onClick={toggleTheme}>
               <IoSunnyOutline className="text-[#128C7E] h-6 w-6"/>
@@ -37,13 +37,14 @@ const Navbar = () => {
               <IoPartlySunny className="h-6 w-6"/>
             </div>
           }
+        </div> */}
 
-          <a href="/" className="dark:text-white text-sm text-center font-medium">Blog</a>
+        <div className="md:flex space-x-3 hidden">
 
-          <a href="/dashboard" className="flex items-center bg-[#128C7E] p-3 text-sm text-center font-medium text-white rounded-lg">Get Started <MdArrowOutward className="ms-3 w-6 h-6"/></a>
+          <a href="/" className="flex items-center border-[1px] border-[#128C7E] p-3 text-sm text-center font-medium text-green rounded-lg">Shop <MdArrowOutward className="ms-3 w-6 h-6 text-green"/></a>
 
+          <a href="/login" className="flex items-center bg-[#128C7E] p-3 text-sm text-center font-medium text-white rounded-lg">Login In</a>
         </div>
-
 
         <div className="md:hidden">
           <TfiMenu className="h-7 w-7" />

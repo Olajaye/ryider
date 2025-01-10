@@ -10,6 +10,7 @@ module.exports = {
         poppins: 'Poppins'
       },
       backgroundImage: {
+        'onboardingBg': "url('/src/assets/onboard.png')",
         'heroBg': "url('/src/assets/herog.jpg')", 
         'stepOneBg': "url('/src/assets/steps/firststep.svg')",
         'stepSecondBg': "url('/src/assets/steps/secondstep.svg')",

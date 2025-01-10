@@ -5,28 +5,20 @@ import { FiInstagram } from 'react-icons/fi'
 
 const Footer = () => {
   return (
-    <footer className="bg-[#030011] text-white py-12 px-6">
-      <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-6 gap-5">
-          {/* Brand Column */}
-          <div className="lg:col-span-2">
-            <RyiderLogo/>
-            <p className="text-gray-300 mb-4">
-              It's free to join. Start earning in a minutes
-            </p>
-          </div>
-
+    <footer className="bg-white text-black py-12 px-6">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-5">
           <div className="flex flex-col gap-4">
             <h3 className="text-lg font-semibold text-green">Services</h3>
             <a
               href='/'
-              className="text-gray-300 hover:text-green transition-colors duration-200"
+              className=" hover:text-green transition-colors duration-200"
             >
               Surveys
             </a>
             <a
               href='/'
-              className="text-gray-300 hover:text-green transition-colors duration-200"
+              className=" hover:text-green transition-colors duration-200"
             >
               Paying bills
             </a>
@@ -121,6 +113,14 @@ const Footer = () => {
               <FiInstagram />
             </a>
             
+          </div>
+
+          {/* Brand Column */}
+          <div className="flex flex-col items-end">
+            <RyiderLogo/>
+            <p className="text-gray-300 mb-4">
+              It's free to join. Start earning in a minutes
+            </p>
           </div>
         </div>
 

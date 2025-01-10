@@ -3,8 +3,7 @@ import { useAuth } from "../context/AuthContext";
 
 
 const RequiredAuth = ()=>{
-  const {auth, userData}= useAuth()
-  console.log(userData)
+  const {auth}= useAuth()
   const location = useLocation()
   return(
     auth?.token 

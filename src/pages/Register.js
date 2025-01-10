@@ -21,7 +21,8 @@ const formData = {
  country: "",
  email:"",
  phone:"",
- referral:""
+ referral:"",
+ coupon:""
 }
 
 
@@ -140,7 +141,7 @@ const Register = () => {
     switch (step) {
       case 1:
         return (
-          <section className='relative'>
+          <section className='relative bg-onboardingBg bg-no-repeat bg-cover'>
             <div className='container mx-auto px-4'>
               <div className='flex justify-center items-center h-screen'>
                 <div className='flex justify-center items-center flex-col'>
@@ -160,17 +161,12 @@ const Register = () => {
         );
       case 2:
         return (
-          <section className='relative'>
+          <section className='relative bg-onboardingBg bg-no-repeat bg-cover'>
             <div className='container mx-auto px-4'>
               <div className='flex justify-center items-center h-screen flex-col'>
-                <img src='/onboardingImage.png' alt='register' className='md:h-[400px]'/>
-                <h5 className='mt-3 font-poppins font-bold  text-xl md:text-2xl text-center'>
-                  Are you a Shopper or Publisher
-                </h5>
-                <p className='font-poppins font-normal text-sm md:text-xl text-center mt-1'>
-                  please select one option
-                </p>
 
+                <h2> </h2>
+               
                 <div className='flex space-x-9 md:space-x-20 mt-4'>
                   <div className='flex space-x-2 items-center'>
                     <input 
@@ -181,13 +177,13 @@ const Register = () => {
                       onChange={handleShopperChange}
                       required
                     />
-                    <label htmlFor="shopper"  className="w-6 h-6 rounded-full border-[1px] border-gray-400  bg-white cursor-pointer transition-colors duration-300 flex items-center justify-center">
-                      <div className={`w-5 h-5 rounded-full ${selectedRole === 'shopper' ? 'bg-green' : 'bg-gray-400'}`} />
+                    <label 
+                      htmlFor="shopper"  
+                      className="cursor-pointer"
+                    >
+                      <img src='/onboarding/shopperCard.svg' alt='shopper'/> 
                     </label>
-                    <label htmlFor='shopper' className='cursor-pointer'> I am a Shopper</label>
                   </div>
-
-                  
                   <div className='flex space-x-2 items-center'>
                     <input 
                       id="publisher" 
@@ -197,10 +193,11 @@ const Register = () => {
                       required
                       onChange={handlePublisherChange}
                       />
-                    <label htmlFor="publisher"  className="w-6 h-6 rounded-full border-[1px] border-gray-400  bg-white cursor-pointer transition-colors duration-300 flex items-center justify-center">
-                      <div className={`w-5 h-5 rounded-full ${selectedRole === 'publisher' ? 'bg-green' : 'bg-gray-400'}`} />
+                    <label 
+                      htmlFor="publisher"  
+                      className="cursor-pointer ">
+                      <img src='/onboarding/publisherCard.svg' alt='shopper'/>  
                     </label>
-                    <label htmlFor='publisher' className='cursor-pointer'> I am a Publisher</label>
                   </div>
                 </div>
 
@@ -225,93 +222,103 @@ const Register = () => {
         );
       case 3:
         return (
-          <section>
+          <section className='bg-onboardingBg bg-no-repeat bg-cover'>
             <div className='container mx-auto px-4'>
-              <div className='h-screen flex-col pt-16'>
-                <div className='flex'>
-                  <IoIosArrowBack className='h-7 w-7' onClick={()=>setStep(2)}/>
-                  <h2 className='font-poppins w-[90%] text-2xl text-[#111111] text-center font-semibold flex items-center justify-center'>Enter your personal information</h2>
+              <div className='h-screen flex justify-center items-center'>
+                <div className='flex-1'>
+                  <img src='/onboarding/onBoardLogo.svg' alt='logo'/>
                 </div>
+                <div className='h-[90vh] flex-1 flex justify-center items-center '>
+                  <div className='bg-white w-[80%] h-auto rounded-md'>
+                    {/* Content */}
+                    <div className='p-4'>
+                      <div className='flex justify-between'>
+                        <IoIosArrowBack className='h-7 w-7' onClick={()=>setStep(2)}/>
+                        <h2 className='font-poppins flex-1 text-xl text-[#111111] text-center font-semibold flex items-center justify-center'>Enter your personal information</h2>
+                      </div>
 
-                <div className='grid grid-cols-1 md:grid-cols-2 gap-y-5 md:gap-x-20 pt-10 md:pt-24'>
-                  
-                    <Input 
-                      label={"Full Name or Business name"}
-                      id={"legalname"}
-                      name={"fullname"}
-                      value={formFeild.fullname}
-                      onChangeHandler={handleFormDataOnChange}
-                      placeholder={"Legal full name"}
-                      type={'text'}
-                    />
-                  
-                 
+                      <div className='space-y-5 mt-7'>
+                        <Input 
+                          label={"Full Name or Business name"}
+                          id={"legalname"}
+                          name={"fullname"}
+                          value={formFeild.fullname}
+                          onChangeHandler={handleFormDataOnChange}
+                          placeholder={"Legal full name"}
+                          type={'text'}
+                        />
+                        
+                      
 
-                  <div className='flex flex-col'>
-                    <label htmlFor='selectCountry' className='font-poppins font-semibold text-base text-[#111111]'>
-                      Select Country</label>
-                    <select 
-                      id='selectCountry' 
-                      className='w-full mt-2 p-2 outline-green border-[1px] border-green rounded-lg'
-                      name='country'
-                      value={formFeild.country}
-                      required
-                      onChange={handleFormDataOnChange}
-                      >
-                      <option value="">--Choose an option--</option>
-                      <option value="nigeria">Nigeria</option>
-                      <option value="option2">Option 2</option>
-                      <option value="option3">Option 3</option>
-                    </select>
-                  </div>
+                        <div className='flex flex-col'>
+                          <label htmlFor='selectCountry' className='font-poppins font-semibold text-base text-[#111111]'>
+                            Select Country</label>
+                          <select 
+                            id='selectCountry' 
+                            className='w-full mt-2 p-2 outline-green border-[1px] border-green rounded-lg'
+                            name='country'
+                            value={formFeild.country}
+                            required
+                            onChange={handleFormDataOnChange}
+                            >
+                            <option value="">--Choose an option--</option>
+                            <option value="nigeria">Nigeria</option>
+                            <option value="option2">Option 2</option>
+                            <option value="option3">Option 3</option>
+                          </select>
+                        </div>
+
+                        <Input 
+                          label={"Email Address"}
+                          id={"email"}
+                          name={"email"}
+                          value={formFeild.email}
+                          onChangeHandler={handleFormDataOnChange}
+                          placeholder={"Enter your email address"}
+                          type={'email'}
+                        />
+
+                        {selectedRole === "publisher" && <Input 
+                          label={"Coupon"}
+                          id={"coupon"}
+                          name={"coupon"}
+                          value={formFeild.coupon}
+                          onChangeHandler={handleFormDataOnChange}
+                          placeholder={"Enter your coupon code"}
+                          type={'text'}
+                        />}
+                      
+                        <Input 
+                          label={"Phone Number"}
+                          id={"phone"}
+                          name={"phone"}
+                          value={formFeild.phone}
+                          onChangeHandler={handleFormDataOnChange}
+                          placeholder={"Enter your phone number"}
+                          type={'number'}
+                        />
+
+                        <Input 
+                          label={"Referral Username"}
+                          id={"referral"}
+                          name={"referral"}
+                          value={formFeild.referral}
+                          onChangeHandler={handleFormDataOnChange}
+                          placeholder={"motionbyables"}
+                          type={'text'}
+                        />
+
+                        <div className='flex justify-center items-center'>
+                          <button onClick={handleNext}  className='text-white bg-green w-[80%] py-2 rounded-lg  text-lg font-poppins font-bold'>
+                            Countinue
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                 </div>
                 </div>
-
-
-                <div className='grid grid-cols-1 md:grid-cols-2 gap-y-5 md:gap-x-20  pt-5 md:pt-16'>
-                  
-                  <Input 
-                    label={"Email Address"}
-                    id={"email"}
-                    name={"email"}
-                    value={formFeild.email}
-                    onChangeHandler={handleFormDataOnChange}
-                    placeholder={"Enter your email address"}
-                    type={'email'}
-                  />
-                
-                  <Input 
-                    label={"Phone Number"}
-                    id={"phone"}
-                    name={"phone"}
-                    value={formFeild.phone}
-                    onChangeHandler={handleFormDataOnChange}
-                    placeholder={"Enter your phone number"}
-                    type={'number'}
-                  />
-                </div>
-
-
-                <div className='grid grid-cols-1 pt-5 md:pt-16'>
-                  <div className='w-full md:w-[45%]'>
-                    <Input 
-                      label={"Referral Username"}
-                      id={"referral"}
-                      name={"referral"}
-                      value={formFeild.referral}
-                      onChangeHandler={handleFormDataOnChange}
-                      placeholder={"motionbyables"}
-                      type={'text'}
-                    />
-                  </div>
-                </div>
-
-                <div className='flex justify-center items-center pt-10'>
-                  <button onClick={handleNext}  className='text-white bg-green w-[80%] py-2 rounded-lg mt-5 text-lg font-poppins font-bold'>
-                    Countinue
-                  </button>
-                </div>
-                
               </div>
+             
             </div>
             {errors && ""}
           </section>

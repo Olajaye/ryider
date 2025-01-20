@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
-import Input from '../core/Input'
+import Input from '../../core/Input'
 import { IoIosArrowBack } from 'react-icons/io'
 import { useNavigate } from 'react-router'
-import { useAuth } from '../context/AuthContext'
+import { useAuth } from '../../context/AuthContext'
 import axios from 'axios'
-import { Loading } from '../core/LoadingSpiner'
+import { Loading } from '../../core/LoadingSpiner'
 
 
 

@@ -1,9 +1,9 @@
 import React from 'react'
 // import { useAuth } from '../context/AuthContext'
 // import Logout from './Logout'
-import { Sidebar } from '../components/Sidebar'
+import { Sidebar } from './Sidebar'
 import { Outlet } from 'react-router'
-import { UserProfile } from '../components/UserProfile'
+import { UserProfile } from '../../components/UserProfile'
 
 const DashboardLayout = () => {
  

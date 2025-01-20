@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { IoIosArrowBack } from 'react-icons/io'
-import { PasswordInput } from '../core/PasswordInput';
+import { PasswordInput } from '../../core/PasswordInput';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
-import { useAuth } from '../context/AuthContext';
-import { ErrorAlert, SuccessAlert } from '../core/alert';
-import { Loading } from '../core/LoadingSpiner';
+import { useAuth } from '../../context/AuthContext';
+import { ErrorAlert, SuccessAlert } from '../../core/alert';
+import { Loading } from '../../core/LoadingSpiner';
 
 
 const CreateNewPassword = () => {

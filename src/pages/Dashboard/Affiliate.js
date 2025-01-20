@@ -1,7 +1,7 @@
 import React from 'react'
-import { StatCard } from '../components/Affiliate/StatCard'
-import { OrderStatusChart } from '../components/Affiliate/OrderStatusChat'
-import { TransactionsTable } from '../components/Dashboard/TransactionTable'
+import { StatCard } from '../../components/Affiliate/StatCard'
+import { OrderStatusChart } from '../../components/Affiliate/OrderStatusChat'
+import { TransactionsTable } from '../../components/Dashboard/TransactionTable'
 
 const Affiliate = () => {
   return (

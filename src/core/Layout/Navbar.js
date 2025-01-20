@@ -3,24 +3,26 @@
 // import { IoPartlySunny } from "react-icons/io5";
 import { MdArrowOutward } from "react-icons/md";
 import { TfiMenu } from "react-icons/tfi";
-import RyiderLogo from "../core/RyiderLogo"
+import RyiderLogo from "../RyiderLogo";
+
 const navigation = [
-  {link:"/", nav: 'About Us'},
-  {link:"/", nav: 'Contact Us'},
-  {link: "/", nav: "Service"},
-  {link: '/', nav: "Blog"},
-  {link: "/", nav: "Resources"},
+  {link:"/aboutus", nav: 'About Us'},
+  {link:"/contactus", nav: 'Contact Us'},
+  {link:"/services", nav: 'Services'},
+  {link: "/faq", nav: "FAQ"},
+  {link: '/blogs', nav: "Blogs"},
+  // {link: "/resources", nav: "Resources"},
 ]
 const Navbar = () => {
   // const { isDarkMode, toggleTheme } = useTheme();
 
   return (
-    <header className='container mx-auto px-4 '>
+    <header className='container mx-auto px-4 py-2 '>
       <nav className='flex items-center justify-between py-2 font-poppins'>
         
         <RyiderLogo/>
 
-        <div className='lg:flex dark:text-white space-x-9 hidden'>
+        <div className='lg:flex space-x-9 hidden pt-3'>
           {navigation.map((nav, index)=>(
             <div key={index}>
               <a href={nav.link}>{nav.nav}</a>

@@ -1,19 +1,16 @@
 import React from 'react'
-// import Hero from '../core/Hero'
-// import { items } from '../constant/listDB'
-// import Cards from '../core/Cards'
-// import CardHeader from '../core/CardHeader';
 import { MdArrowOutward} from 'react-icons/md';
 import { BsCashCoin,  } from 'react-icons/bs';
 import FaqComponent from '../core/FAQ';
 import { blogPost, reasons, services, steps } from '../constant/Home/home';
+import Navbar from '../core/Layout/Navbar';
 
 
 
 const Home = () => {
   return (
    <>
-    {/* <Hero/> */}
+    <Navbar/>
     <header className='container mx-auto px-4 font-poppins py-7'> 
       <div className='md:flex justify-between items-center'>
         <div className='flex items-start flex-col text-start font-poppins flex-1'>

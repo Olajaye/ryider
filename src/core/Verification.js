@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router'
-import { ErrorAlert, SuccessAlert } from '../core/alert';
-import { Loading } from '../core/LoadingSpiner';
+import { ErrorAlert, SuccessAlert } from './alert';
+import { Loading } from './LoadingSpiner';
 
 
 

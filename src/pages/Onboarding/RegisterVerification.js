@@ -1,6 +1,6 @@
 import React from 'react'
-import Verification from '../components/Verification'
-import { useAuth } from '../context/AuthContext'
+import Verification from '../../core/Verification'
+import { useAuth } from '../../context/AuthContext'
 
 const RegisterVerification = () => {
   const {backendUrl} = useAuth()

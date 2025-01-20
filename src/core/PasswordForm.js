@@ -1,7 +1,7 @@
 
 
 import { IoIosArrowBack } from 'react-icons/io';
-import { PasswordInput } from '../core/PasswordInput';
+import { PasswordInput } from './PasswordInput';
 import { PasswordRequirements } from '../util/passwordvalidation';
 
 

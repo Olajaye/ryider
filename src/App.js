@@ -1,17 +1,21 @@
 import { Routes, Route } from "react-router";
-import Layout from "./core/Layout";
-import Home from "./pages/Home";
-import Earn from "./pages/Earn";
-import Register from "./pages/Register";
-import LogIn from "./pages/LogIn";
-import ForgetPassword from "./pages/ForgetPassword";
-import CreateNewPassword from "./pages/CreateNewPassword";
-import RegisterVerification from "./pages/RegisterVerification";
-import RequiredAuth from "./components/RequireAuth";
-import DashboardLayout from "./core/DashboardLayout";
-import Dashboard from "./pages/Dashboard";
-import Wallet from "./pages/Wallet";
-import Affiliate from "./pages/Affiliate";
+import Layout from "./core/Layout/Layout";
+import Home from "./pages/Home"
+import Blogs from "./pages//Blogs"
+import About from "./pages/About";
+import ContactUs from "./pages/ContactUs";
+import Services from "./pages/Services";
+import FAQ from "./pages/FAQ";
+import Privacy from "./pages/Privacy";
+
+import LogIn from './pages/Dashboard/LogIn'
+import Register from './pages/Onboarding/Register'
+import RegisterVerification from './pages/Onboarding/RegisterVerification'
+import ForgetPassword from './pages/Onboarding/ForgetPassword'
+import CreateNewPassword from './pages/Onboarding/CreateNewPassword'
+
+
+
 
 
 
@@ -21,15 +25,20 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout/>}>
           <Route index element={<Home/>}/>
-          <Route path="earn" element={<Earn/>}/>
+          <Route path="blogs" element={<Blogs/>}/>
+          <Route path="aboutus" element={<About/>}/>
+          <Route path="contactus" element={<ContactUs/>}/>
+          <Route path="services" element={<Services/>}/>
+          <Route path="faq" element={<FAQ/>}/>
+          <Route path="privacy" element={<Privacy/>}/>
         </Route>
-        <Route path="login" element={<LogIn/>}/> 
-        <Route path="register" element={<Register/>}/>
+        <Route path="login" element={<LogIn/>}/>  
+        <Route path="register" element={<Register/>}/> 
         <Route path="verification" element={<RegisterVerification/>}/>
         <Route path="forgetpassword" element={<ForgetPassword/>}/>
         <Route path="createpassword" element={<CreateNewPassword/>}/>
        
-        <Route element={<RequiredAuth/>}>
+        {/* <Route element={<RequiredAuth/>}>
           <Route path="dashboard" element={<DashboardLayout/>}>
            <Route index element={<Dashboard/>}/>
            <Route path="wallet" element={<Wallet/>}/>
@@ -40,7 +49,7 @@ function App() {
            <Route path="support" element={<h1>support</h1>}/>
            <Route path="about" element={<h1>about</h1>}/>
           </Route>
-        </Route>
+        </Route> */}
       </Routes>
     </main>
   )

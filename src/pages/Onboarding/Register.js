@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
-import Carousel from '../core/Carosel'
+import Carousel from '../../core/Carosel'
 import { IoIosArrowBack } from 'react-icons/io'
-import Input from '../core/Input'
-import { RegisterPasswordForm } from '../components/PasswordForm'
-import { validatePassword } from '../util/passwordvalidation';
-import { useAuth } from '../context/AuthContext'
+import Input from '../../core/Input'
+import { RegisterPasswordForm } from '../../core/PasswordForm'
+import { validatePassword } from '../../util/passwordvalidation';
+import { useAuth } from '../../context/AuthContext'
 import axios from 'axios'
 import { useNavigate } from 'react-router'
-import { ErrorAlert } from '../core/alert'
-import { Loading } from '../core/LoadingSpiner'
+import { ErrorAlert } from '../../core/alert'
+import { Loading } from '../../core/LoadingSpiner'
 
 const images = [
   '/register/registerImage.svg',

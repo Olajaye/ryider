@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import Input from '../core/Input'
-import { PasswordInput } from '../core/PasswordInput'
-import { useAuth } from '../context/AuthContext'
+import Input from '../../core/Input'
+import { PasswordInput } from '../../core/PasswordInput'
+import { useAuth } from '../../context/AuthContext'
 import { useLocation, useNavigate } from 'react-router'
 import axios from 'axios'
-import { Loading } from '../core/LoadingSpiner'
-import { ErrorAlert } from '../core/alert'
+import { Loading } from '../../core/LoadingSpiner'
+import { ErrorAlert } from '../../core/alert'
 
 
 const LogIn = () => {

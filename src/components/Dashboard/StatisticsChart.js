@@ -25,7 +25,7 @@ export const StatisticsChart = () => {
         <select className="border rounded-md px-2 py-1">
           <option>Monthly</option>
           <option>Weekly</option>
-          <option>Daily</option>
+          <option className='bg-[#128c7e31]'>Daily</option>
         </select>
       </div>
       <div className="h-64">
@@ -35,9 +35,9 @@ export const StatisticsChart = () => {
             <YAxis />
             <Legend />
            
-            <Bar dataKey="thisMonth" fill="#3B82F6" stackId="a" barSize={40} />
-            <Bar dataKey="lastMonth" fill="#93C5FD" stackId="a" barSize={40}/>
-            <Bar dataKey="today" fill="#BFDBFE"  stackId="a" barSize={40}/>
+            <Bar dataKey="thisMonth" fill="#128C7E" stackId="a" barSize={20}  />
+            <Bar dataKey="lastMonth" fill="#128c7e31" stackId="a" barSize={20} radius={[5, 5, 0, 0]} />
+            {/* <Bar dataKey="today" fill="#BFDBFE"  stackId="a" barSize={40}/> */}
           </BarChart>
         </ResponsiveContainer>
       </div>

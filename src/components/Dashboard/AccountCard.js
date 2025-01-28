@@ -2,7 +2,7 @@ import React from 'react';
 
 export const AccountCard = ({ title, amount, subtitle, date, showSeeAll = false }) => {
   return (
-    <div className="bg-white rounded-lg p-4 flex justify-between items-start">
+    <div className="bg-white rounded-lg p-4 flex justify-between items-start shadow-lg  h-36 ">
       <div>
         <div className="flex items-center gap-2 mb-1">
           <span className="text-sm text-gray-600">{title}</span>

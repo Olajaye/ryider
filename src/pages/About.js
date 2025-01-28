@@ -13,7 +13,7 @@ const About = () => {
         }}
       >
         <div className="absolute inset-0 bg-black opacity-60"></div>
-        <div className="absolute inset-0  text-white px-4" >
+        <div className="absolute inset-0  text-white px-4 pt-20" >
           <div className='flex flex-col items-center justify-center text-center'>
             <div className='text-center md:max-w-[70%] pt-20'>
               <h1 className='text-white text-4xl font-bold'>About Us</h1>
@@ -25,7 +25,7 @@ const About = () => {
       </div>
 
       <div className='bg-[#128C7E1A]'>
-        <div className='grid grid-cols-1 md:grid-cols-2 container mx-auto px-4 py-8'>
+        <div className='grid grid-cols-1 gap-6 md:grid-cols-2 container mx-auto px-4 py-8'>
           <div>
             <h1 className='font-extrabold text-2xl text-gray-900'>
               Our <span className='text-green'>Mission</span>
@@ -40,12 +40,11 @@ const About = () => {
             <p className='flex items-center space-x-3'><LuDot className='h-7 w-7' /> Helping show and event promoters gain a larger and more engaged audience.</p>
           </div>
         </div>
-
       </div>
 
 
       <div className='bg-white'>
-        <div className='grid  grid-cols-1 md:grid-cols-2 container mx-auto px-4 py-8'>
+        <div className='grid gap-6  grid-cols-1 md:grid-cols-2 container mx-auto px-4 py-8'>
           <div className='flex flex-col space-y-6 mt-4 md:mt-0 order-2 md:order-1'>
             <p className='flex items-center space-x-3'><LuDot className='h-7 w-7' /> Unemployed individuals and those looking to earn extra income.</p>
             <p className='flex items-center space-x-3'><LuDot className='h-7 w-7' /> Advertisers, marketers, and startups seeking innovative ways to connect with consumers.</p>
@@ -62,7 +61,6 @@ const About = () => {
             <p className='text-base font-normal text-black mt-2'>We aim to create opportunities and drive meaningful connections by:</p>
           </div>
         </div>
-
       </div>
 
 
@@ -110,7 +108,7 @@ const About = () => {
       </div>
 
       <div className='bg-white'>
-        <div className='grid md:grid-cols-2 container mx-auto px-4 py-8'>
+        <div className='grid md:grid-cols-2 gap-6  container mx-auto px-4 py-8'>
           <div className='flex flex-col space-y-6 mt-4 md:mt-0 order-2 md:order-1'>
             <p className='flex items-center space-x-3'><LuDot className='h-7 w-7' />The difficulty businesses face in attracting customers to patronize their products or services.</p>
             <p className='flex items-center space-x-3'><LuDot className='h-7 w-7' />The growing unemployment rate in our country and region. We believe that businesses can create meaningful connections by paying consumers directly to engage with and promote their offerings, while individuals can earn a living in the process.</p>
@@ -138,7 +136,7 @@ const About = () => {
             </h1>
             <p className='text-base font-normal text-black mt-2'>We provide a wide range of services to empower and connect our users</p>
           </div>
-          <div className='grid grid-cols-2 md:grid-cols-3 gap-5 pt-7'>
+          <div className='grid gap-6  grid-cols-2 md:grid-cols-3  pt-7'>
             <div className='text-center'>
               <h4 className='text-[#101828] font-medium'>Earn While You Engage</h4>
               <p className='text-[#667085] text-base'>Users are rewarded for promoting products and services, completing tasks, and participating in our ecosystem.</p>
@@ -162,7 +160,7 @@ const About = () => {
       </div>
 
       <div className='bg-white'>
-        <div className='grid grid-cols-1 md:grid-cols-2 container mx-auto px-4 py-8'>
+        <div className='grid grid-cols-1  gap-6  md:grid-cols-2 container mx-auto px-4 py-8'>
           <div>
             <h1 className='font-extrabold text-4xl text-gray-900 md:max-w-[50%]'>
              Our <span className='text-green'>Values</span> and <span className='text-green'>Principles</span>

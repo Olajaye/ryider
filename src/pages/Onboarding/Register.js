@@ -96,7 +96,6 @@ const Register = () => {
 
     const {fullname, email, country, phone, referral  } = formFeild
 
-
     if (validation.isValid && passwordsMatch) {
       reset()
       setLoading(true)
@@ -163,10 +162,7 @@ const Register = () => {
         return (
           <section className='relative bg-onboardingBg bg-no-repeat bg-cover'>
             <div className='container mx-auto px-4'>
-              <div className='flex justify-center items-center h-screen flex-col'>
-
-                <h2> </h2>
-               
+              <div className='flex justify-center items-center h-screen flex-col'>               
                 <div className='flex space-x-9 md:space-x-20 mt-4'>
                   <div className='flex space-x-2 items-center'>
                     <input 
@@ -179,7 +175,8 @@ const Register = () => {
                     />
                     <label 
                       htmlFor="shopper"  
-                      className="cursor-pointer"
+                      className={`cursor-pointer ${selectedRole === 'shopper'? "border-2 border-green rounded-lg bg-green":""}`}
+
                     >
                       <img src='/onboarding/shopperCard.svg' alt='shopper'/> 
                     </label>
@@ -195,7 +192,8 @@ const Register = () => {
                       />
                     <label 
                       htmlFor="publisher"  
-                      className="cursor-pointer ">
+                      className={`cursor-pointer ${selectedRole === 'publisher'? "border-2 border-green rounded-lg bg-green":""}`}
+                      >
                       <img src='/onboarding/publisherCard.svg' alt='shopper'/>  
                     </label>
                   </div>

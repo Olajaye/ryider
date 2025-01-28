@@ -14,12 +14,12 @@ const ContactUs = () => {
         <div className="absolute inset-0 bg-black opacity-60"></div>
         <div className="absolute inset-0  text-white px-4" >
           <div className='flex flex-col items-center justify-center text-center'>
-            <div className='text-center max-w-[70%] pt-20'>
+            <div className='text-center max-w-[70%] pt-40'>
               <h1 className='text-white text-4xl font-bold'>Contact Us</h1>
               <p>We’re here to help! At Ryider your feedback, questions, and concerns are important to us. Whether you're a Shopper, Publisher, or just curious about what we do, our team is ready to assist you.</p>
             </div>
 
-            <div className='flex space-x-5 mt-20'>
+            <div className='flex space-x-5 mt-5'>
               <div className='rounded-full'>
                <img src='/contactus/facebook.png' alt='facebook' className='w-10 h-10 rounded-full'/>
               </div>

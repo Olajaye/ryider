@@ -11,7 +11,7 @@ const Home = () => {
   return (
    <>
     <Navbar/>
-    <header className='container mx-auto px-4 font-poppins py-7'> 
+    <header className='container mx-auto px-4 font-poppins pt-24'> 
       <div className='md:flex justify-between items-center'>
         <div className='flex items-start flex-col text-start font-poppins flex-1'>
           <h1 className='text-black font-poppins font-bold md:text-5xl'>
@@ -125,7 +125,7 @@ const Home = () => {
       
       </div>      
     </section>
-    <FaqComponent/>
+    {/* <FaqComponent/> */}
     <div className='container px-4 mx-auto'>
       <div className="bg-gray-50 flex items-center justify-center p-4">
             <div className="text-center py-10">

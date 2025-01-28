@@ -41,7 +41,7 @@ const Navbar = () => {
           <div className="lg:flex space-x-3 hidden">
             <a href="/" className="flex items-center border-[1px] border-[#128C7E] p-3 text-sm text-center font-medium text-green rounded-lg">Shop <MdArrowOutward className="ms-3 w-6 h-6 text-green"/></a>
 
-            <a href="/login" className="flex items-center bg-[#128C7E] p-3 text-sm text-center font-medium text-white rounded-lg">Login In</a>
+            <a href="/dashboard" className="flex items-center bg-[#128C7E] p-3 text-sm text-center font-medium text-white rounded-lg">Login In</a>
           </div>
 
           <div className="p-3 lg:hidden">
@@ -61,7 +61,7 @@ const Navbar = () => {
           <a href="/" className='flex items-center border-[1px] border-[#128C7E] p-3 text-sm text-center font-medium text-green rounded-lg'>
             Shop <MdArrowOutward className='ms-3 w-6 h-6 text-green'/>
           </a>
-          <a href="/login" className='flex items-center bg-[#128C7E] p-3 text-sm text-center font-medium text-white rounded-lg'>
+          <a href="/dashboard" className='flex items-center bg-[#128C7E] p-3 text-sm text-center font-medium text-white rounded-lg'>
             Login In
           </a>
         </div>

@@ -4,6 +4,7 @@ import React from 'react'
 import { Sidebar } from './Sidebar'
 import { Outlet } from 'react-router'
 import { UserProfile } from '../../components/UserProfile'
+import Logout from '../Logout'
 
 const DashboardLayout = () => {
  
@@ -18,8 +19,9 @@ const DashboardLayout = () => {
         <div className='flex-1'>
           <header className="h-16 px-8 flex justify-end items-center border-b bg-white sticky top-0 z-10">
             <UserProfile />
+            <Logout/>
           </header>
-          <main className="p-8 overflow-y-scroll max-h-screen">
+          <main className="py-8 px-4 overflow-y-scroll max-h-screen">
             <Outlet/>
           </main>
         </div>

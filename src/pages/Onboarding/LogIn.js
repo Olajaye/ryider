@@ -24,30 +24,31 @@ const LogIn = () => {
 
   const handleSubmit= async (e)=>{
     e.preventDefault();
+    // navigate('/dashboard') 
 
-    const url = `${backendUrl}/api/auth/login`
-    setLoading(true)
+    // const url = `${backendUrl}/api/auth/login`
+    // setLoading(true)
     
-    try {
-      reset()
-      axios.defaults.withCredentials = true
-      const {data} = await axios.post(url, {email, password})
-      console.log(data)
-      if(data.success){
-        setLoading(false)
-        const {token} = data
-        setAuth({token})
-        // navigate('/dashboard') 
-        navigate(from, {replace: true})
-      }else {
-        setLoading(false);
-        ErrorAlert(data.message)
-      }
+    // try {
+    //   reset()
+    //   axios.defaults.withCredentials = true
+    //   const {data} = await axios.post(url, {email, password})
+    //   console.log(data)
+    //   if(data.success){
+    //     setLoading(false)
+    //     const {token} = data
+    //     setAuth({token})
+        
+    //     navigate(from, {replace: true})
+    //   }else {
+    //     setLoading(false);
+    //     ErrorAlert(data.message)
+    //   }
       
-    } catch (error) {
-      setLoading(false)
-      ErrorAlert(error.message)
-    }
+    // } catch (error) {
+    //   setLoading(false)
+    //   ErrorAlert(error.message)
+    // }
   }
 
   return (

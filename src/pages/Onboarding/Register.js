@@ -96,44 +96,46 @@ const Register = () => {
 
     const {fullname, email, country, phone, referral  } = formFeild
 
-    if (validation.isValid && passwordsMatch) {
-      reset()
-      setLoading(true)
-      try {
-        axios.defaults.withCredentials = true
-        const url = `${backendUrl}/api/auth/register`
-        const {data} = await axios.post(url, {
-        name: fullname,
-        email: email,
-        role: selectedRole,
-        password: password,
-        country: country,
-        phone: phone,
-        referral: referral
-        })
+    navigate('/dashboard') 
+
+    // if (validation.isValid && passwordsMatch) {
+    //   reset()
+    //   setLoading(true)
+    //   try {
+    //     axios.defaults.withCredentials = true
+    //     const url = `${backendUrl}/api/auth/register`
+    //     const {data} = await axios.post(url, {
+    //     name: fullname,
+    //     email: email,
+    //     role: selectedRole,
+    //     password: password,
+    //     country: country,
+    //     phone: phone,
+    //     referral: referral
+    //     })
   
-        if(data.success){
-          const {token}= data 
-          setAuth({token})
-          const url = `${backendUrl}/api/auth/send-verify-otp`
-          const res = await axios.post(url)
-          setLoading(false)
-          if(res.data.success){
-            navigate('/verification')
-          }else{
-            ErrorAlert(res.data.message)
-          }
+    //     if(data.success){
+    //       const {token}= data 
+    //       setAuth({token})
+    //       const url = `${backendUrl}/api/auth/send-verify-otp`
+    //       const res = await axios.post(url)
+    //       setLoading(false)
+    //       if(res.data.success){
+    //         navigate('/verification')
+    //       }else{
+    //         ErrorAlert(res.data.message)
+    //       }
         
-        }else{
-          setLoading(false)
-          ErrorAlert(data.message)
-        }
+    //     }else{
+    //       setLoading(false)
+    //       ErrorAlert(data.message)
+    //     }
         
-      } catch (error) {
-        setLoading(false)
-        ErrorAlert(error.message)
-      }
-    } 
+    //   } catch (error) {
+    //     setLoading(false)
+    //     ErrorAlert(error.message)
+    //   }
+    // } 
   };
 
   const renderStepContent = () => {

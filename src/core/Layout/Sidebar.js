@@ -26,9 +26,9 @@ export const Sidebar = () => {
         <a href='/' className="text-xl font-bold">Ryder</a>
       </div>
       <nav className="mt-4">
-        {userData.role === 'publisher' 
+        {/* {userData.role === 'publisher' 
         ? 
-          <>
+          <> */}
             <SidebarItem icon={<HomeIcon />} label="Dashboard" path={''}  />
             {/* <SidebarItem icon={<WalletIcon />} label="Wallet" path={'wallet'}/> */}
             <SidebarItem icon={<ChatBubbleLeftIcon />} label="Social Task" path={'socialtask'}/>
@@ -42,12 +42,12 @@ export const Sidebar = () => {
             <SidebarItem icon={<QuestionMarkCircleIcon />} label="Profile" path={'profile'}/>
             <SidebarItem icon={<ChatBubbleLeftIcon />} label="Support Ticket" path={'supportticket'}/>
             <Logout/>
-          </>
+          {/* </>
         :
           <>
             <SidebarItem icon={<HomeIcon />} label="Overview" path={''} active />
           </>
-        }
+        } */}
         
       </nav>
     </div>

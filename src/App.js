@@ -59,24 +59,31 @@ function App() {
         <Route path="forgetpassword" element={<ForgetPassword/>}/>
         <Route path="createpassword" element={<CreateNewPassword/>}/>
        
-        <Route element={<RequiredAuth/>}>
+        {/* <Route element={<RequiredAuth/>}> */}
+            {/* {userData && userData.role === 'publisher' ? (
+            <> */}
         <Route path="dashboard" element={<DashboardLayout />}>
-          {userData && userData.role === 'publisher' ? (
-            <>
-              <Route index element={<Dashboard/>} />
-              <Route path="wallet" element={<Wallet />} />
-              <Route path="affiliate" element={<Affiliate />} />
-              <Route path="socialtask" element={<SocilaTask/>}/>
-              <Route path="vedio" element={<SocialTaskVedio/>}/>
-              <Route path="earnings" element={<Earnings/>}/>
-              <Route path="investment" element={<Investment/>}/>
-              <Route path="salescontest" element={<SalesContest/>} />
-              <Route path="salesticket" element={<SalesTicket/>} />
-              <Route path="vendordashboard" element={<VendorDashboard/>} />
-              <Route path="shoppersdashboard" element={<ShoppersDashboard/>} />
-              <Route path="profile" element={<h1>About</h1>} />
-             
-            </>
+          <Route index element={<Dashboard/>} />
+          <Route path="wallet" element={<Wallet />} />
+          <Route path="affiliate" element={<Affiliate />} />
+          <Route path="socialtask" element={<SocilaTask/>}/>
+          <Route path="vedio" element={<SocialTaskVedio/>}/>
+          <Route path="earnings" element={<Earnings/>}/>
+          <Route path="investment" element={<Investment/>}/>
+          <Route path="salescontest" element={<SalesContest/>} />
+          <Route path="salesticket" element={<SalesTicket/>} />
+          <Route path="vendordashboard" element={<VendorDashboard/>} />
+          <Route path="shoppersdashboard" element={<ShoppersDashboard/>} />
+          <Route path="profile" element={<h1>About</h1>} />
+        </Route>
+        {/* </Route>  */}
+      </Routes>
+    </main>
+  )
+}
+
+export default App;
+ {/* </>
           ) :  (
             <>
               <Route index element={<h1>SHopper dash board</h1>} />
@@ -85,12 +92,4 @@ function App() {
               <Route path="support" element={<h1>Support</h1>} />
               <Route path="about" element={<h1>About</h1>} />
             </>
-          )}
-        </Route>
-        </Route> 
-      </Routes>
-    </main>
-  )
-}
-
-export default App;
+          )} */}

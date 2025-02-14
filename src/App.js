@@ -32,6 +32,10 @@ import SalesContest from "./pages/PublisherDashboard/SalesContest";
 import SalesTicket from "./pages/PublisherDashboard/SalesTicket";
 import VendorDashboard from "./pages/PublisherDashboard/VendorDashboard";
 import ShoppersDashboard from "./pages/PublisherDashboard/ShoppersDashboard";
+import InvestmentHistory from "./components/investment/History";
+import InvestmentDetails from "./components/investment/Details";
+import CancleInvestment from "./components/investment/Cancle";
+import Coupons from "./components/vendorsdashboard/Coupons";
 
 
 
@@ -42,7 +46,7 @@ import ShoppersDashboard from "./pages/PublisherDashboard/ShoppersDashboard";
 function App() {
   const {userData}= useAuth()
   return (
-    <main className="dark:bg-[#121212]">
+    <main className="dark:bg-[#121212] h-screen">
       <Routes>
         <Route path="/" element={<Layout/>}>
           <Route index element={<Home/>}/>
@@ -70,9 +74,13 @@ function App() {
           <Route path="vedio" element={<SocialTaskVedio/>}/>
           <Route path="earnings" element={<Earnings/>}/>
           <Route path="investment" element={<Investment/>}/>
+          <Route path="investmenthistory" element={<InvestmentHistory/>}/>
+          <Route path="investmentdetails" element={<InvestmentDetails/>}/>
+          <Route path="investmentcancle" element={<CancleInvestment/>}/>
           <Route path="salescontest" element={<SalesContest/>} />
           <Route path="salesticket" element={<SalesTicket/>} />
           <Route path="vendordashboard" element={<VendorDashboard/>} />
+          <Route path="vendorcoupon" element={<Coupons/>} />
           <Route path="shoppersdashboard" element={<ShoppersDashboard/>} />
           <Route path="profile" element={<h1>About</h1>} />
         </Route>

@@ -21,7 +21,7 @@ export const SidebarItem= ({ icon, label, active, path }) => {
 export const Sidebar = () => {
   const {userData}= useAuth()
   return (
-    <div className="w-64 h-screen bg-white border-r border-gray-200">
+    <div className="w-64 h-screen overflow-y-hidden bg-white border-r border-gray-200">
       <div className="p-4">
         <a href='/' className="text-xl font-bold">Ryder</a>
       </div>

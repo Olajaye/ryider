@@ -1,7 +1,7 @@
 import React from 'react'
-import { HeroSection } from '../../components/Dashboard/HeroSection'
+// import { HeroSection } from '../../components/Dashboard/HeroSection'
 import { AccountCard } from '../../components/Dashboard/AccountCard'
-import { StatisticsChart } from '../../components/Dashboard/StatisticsChart'
+// import { StatisticsChart } from '../../components/Dashboard/StatisticsChart'
 import { TransactionsTable } from '../../components/Dashboard/TransactionTable'
 // import { UserProfile } from '../components/UserProfile'
 

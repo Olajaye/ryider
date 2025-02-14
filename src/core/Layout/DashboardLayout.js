@@ -12,7 +12,7 @@ const DashboardLayout = () => {
   return (
     <>
       {/* <Logout/> */}
-      <div className="flex h-screen bg-gray-50">
+      <div className="flex max-h-screen overflow-y-hidden bg-gray-50">
         {/* Sidebar: Make it fixed and full height */}
         <Sidebar className="fixed top-0 left-0 h-full w-64 bg-white shadow-md" />
         

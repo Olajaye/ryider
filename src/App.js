@@ -36,6 +36,8 @@ import InvestmentHistory from "./components/investment/History";
 import InvestmentDetails from "./components/investment/Details";
 import CancleInvestment from "./components/investment/Cancle";
 import Coupons from "./components/vendorsdashboard/Coupons";
+import Profile from "./pages/PublisherDashboard/Profile";
+
 
 
 
@@ -82,7 +84,7 @@ function App() {
           <Route path="vendordashboard" element={<VendorDashboard/>} />
           <Route path="vendorcoupon" element={<Coupons/>} />
           <Route path="shoppersdashboard" element={<ShoppersDashboard/>} />
-          <Route path="profile" element={<h1>About</h1>} />
+          <Route path="profile" element={<Profile/>} />
         </Route>
         {/* </Route>  */}
       </Routes>
